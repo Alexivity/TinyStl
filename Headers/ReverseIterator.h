@@ -19,7 +19,7 @@ namespace TinySTL{
 		Iterator base_;
 		Iterator cur_;
 	public:
-		//构造。复制，析构相关
+
 		reverse_iterator_t() :base_(0), cur_(0){}
 		//explicit reverse_iterator_t(const iterator_type& it) :base_(it), cur_(it - 1){}
 		explicit reverse_iterator_t(const iterator_type& it) :base_(it){
@@ -33,7 +33,6 @@ namespace TinySTL{
 			cur_ = --temp;
 		};
 
-		//其他成员函数
 		iterator_type base(){ return base_; }
 		reference operator*(){ return (*cur_); }
 		const_reference operator*()const{ return(*cur_); }

@@ -10,7 +10,6 @@ namespace TinySTL{
 	template<class T, class Alloc = allocator<T>>
 	class deque;
 	namespace Detail{
-		
 		template<class T>
 		class dq_iter :public iterator<bidirectional_iterator_tag, T>{
 		private:

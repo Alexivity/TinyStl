@@ -6,13 +6,13 @@ namespace TinySTL{
 	namespace Detail{
 		template<class T>
 		dq_iter<T>& dq_iter<T>::operator ++(){
-			if (cur_ != getBuckTail(mapIndex_))//+1����ͬһ��Ͱ��
+			if (cur_ != getBuckTail(mapIndex_))
 				++cur_;
 			else if (mapIndex_ + 1 < container_->mapSize_){//+1����ͬһ��map��
 				++mapIndex_;
 				cur_ = getBuckHead(mapIndex_);
 			}
-			else{//+1��������map
+			else{
 				mapIndex_ = container_->mapSize_;
 				//cur_ = container_->map_[mapIndex_] + getBuckSize();//ָ��map_[mapSize_-1]��β����һ��λ��
 				cur_ = container_->map_[mapIndex_];
@@ -35,7 +35,7 @@ namespace TinySTL{
 			}
 			else{
 				mapIndex_ = 0;
-				cur_ = container_->map_[mapIndex_];//ָ��map_[0]��ͷ
+				cur_ = container_->map_[mapIndex_];
 			}
 			return *this;
 		}
@@ -73,7 +73,7 @@ namespace TinySTL{
 		dq_iter<T> operator + (const dq_iter<T>& it, typename dq_iter<T>::difference_type n){//assume n >= 0
 			dq_iter<T> res(it);
 			auto m = res.getBuckTail(res.mapIndex_) - res.cur_;
-			if (n <= m){//ǰ��n������ͬһ��Ͱ��
+			if (n <= m){
 				res.cur_ += n;
 			}
 			else{
@@ -89,7 +89,7 @@ namespace TinySTL{
 		dq_iter<T> operator + (typename dq_iter<T>::difference_type n, const dq_iter<T>& it){
 			return (it + n);
 		}
-		template<class T>
+		template<class T> 
 		dq_iter<T> operator - (const dq_iter<T>& it, typename dq_iter<T>::difference_type n){//assume n >= 0
 			dq_iter<T> res(it);
 			auto m = res.cur_ - res.getBuckHead(res.mapIndex_);
@@ -133,12 +133,13 @@ namespace TinySTL{
 
 	template<class T, class Alloc>
 	bool deque<T, Alloc>::back_full()const{
-		return map_[mapSize_ - 1] && (map_[mapSize_]) == end().cur_;
+		return map_[mapSize_ - 1] && (map_[mapSize_-1]+getBuckSize()-1) == end().cur_;
 	}
 	template<class T, class Alloc>
 	bool deque<T, Alloc>::front_full()const{
 		return map_[0] && map_[0] == begin().cur_;
 	}
+	//jzp hps wdf 
 	template<class T, class Alloc>
 	void deque<T, Alloc>::deque_aux(size_t n, const value_type& val, std::true_type){
 		int i = 0;
@@ -225,7 +226,7 @@ namespace TinySTL{
 	typename deque<T, Alloc>::iterator deque<T, Alloc>::begin(){ return beg_; }
 	template<class T, class Alloc>
 	typename deque<T, Alloc>::iterator deque<T, Alloc>::end(){ return end_; }
-	//���������ʧ�󣬻�ʹ������������ɥʧconst���ԣ���ʱû��Ч����취��ֻ����������Э
+	//���������ʧ�󣬻�ʹ������������ɥʧconst���ԣ���ʱû��Ч����취��ֻ�����������?
 	template<class T, class Alloc>
 	typename deque<T, Alloc>::iterator deque<T, Alloc>::begin()const{ return beg_; }
 	template<class T, class Alloc>
@@ -294,9 +295,6 @@ namespace TinySTL{
 		else if (back_full()){
 			reallocateAndCopy();
 		}
-		//*end_ = val;
-		//bug fix
-		//2015.01.02
 		TinySTL::construct(end_.cur_, val);
 		++end_;
 	}
@@ -309,9 +307,6 @@ namespace TinySTL{
 			reallocateAndCopy();
 		}
 		--beg_;
-		//*beg_ = val;
-		//bug fix
-		//2015.01.02
 		TinySTL::construct(beg_.cur_, val);
 	}
 	template<class T, class Alloc>

@@ -71,7 +71,7 @@ namespace TinySTL{
 	//********** [make_heap] ***************
 	//********* [Algorithm Complexity: O(N)] ****************
 	template<class RandomAccessIterator, class Compare>
-	//heapÉÏËÝËã·¨
+	//heapï¿½ï¿½ï¿½ï¿½ï¿½ã·¨
 	static void up(RandomAccessIterator first, RandomAccessIterator last, 
 		RandomAccessIterator head, Compare comp){//1.[first, last], 2.headr points the header of the heap
 		if (first != last){
@@ -87,7 +87,7 @@ namespace TinySTL{
 		}
 	}
 	template<class RandomAccessIterator, class Compare>
-	//heapÏÂ½µËã·¨
+	//heapï¿½Â½ï¿½ï¿½ã·¨
 	static void down(RandomAccessIterator first, RandomAccessIterator last, 
 		RandomAccessIterator head, Compare comp){//1.[first, last], 2.headr points the header of the heap
 		if (first != last){
@@ -494,7 +494,7 @@ namespace TinySTL{
 				swap(*last, *first);
 			}
 			auto ret = *mid;
-			swap(*mid, *(last - 1));//½«mid item»»Î»×÷ÎªÉÚ±ø
+			swap(*mid, *(last - 1));//ï¿½ï¿½mid itemï¿½ï¿½Î»ï¿½ï¿½Îªï¿½Ú±ï¿½
 			return ret;
 		}
 		template<class RandomIterator, class BinaryPredicate>
@@ -521,7 +521,7 @@ namespace TinySTL{
 	void sort(RandomIterator first, RandomIterator last, BinaryPredicate pred){
 		if (first >= last || first + 1 == last)
 			return;
-		if (last - first <= 20)//Çø¼ä³¤¶ÈÐ¡ÓÚµÈÓÚ20µÄ²ÉÓÃÃ°ÅÝÅÅÐò¸ü¿ì
+		if (last - first <= 20)//ï¿½ï¿½ï¿½ä³¤ï¿½ï¿½Ð¡ï¿½Úµï¿½ï¿½ï¿½20ï¿½Ä²ï¿½ï¿½ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			return bubble_sort(first, last, pred);
 		auto mid = mid3(first, last - 1, pred);
 		auto p1 = first, p2 = last - 2;
@@ -532,7 +532,7 @@ namespace TinySTL{
 				swap(*p1, *p2);
 			}
 		}
-		swap(*p1, *(last - 2));//½«×÷ÎªÉÚ±øµÄmid item»»»ØÔ­À´µÄÎ»ÖÃ
+		swap(*p1, *(last - 2));//ï¿½ï¿½ï¿½ï¿½Îªï¿½Ú±ï¿½ï¿½ï¿½mid itemï¿½ï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
 		sort(first, p1, pred);
 		sort(p1 + 1, last, pred);
 	}

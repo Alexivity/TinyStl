@@ -170,10 +170,10 @@ namespace TinySTL{
 		int compare(size_t pos, size_t len, const char* s, size_t n) const;
 	private:
 		void moveData(string& str);
-		//����ʱ�ռ䲻������
+
 		template<class InputIterator>
 		iterator insert_aux_copy(iterator p, InputIterator first, InputIterator last);
-		//����ʱ�ռ䲻������
+
 		iterator insert_aux_filln(iterator p, size_t n, value_type c);
 		size_type getNewCapacity(size_type len)const;
 		void allocateAndFillN(size_t n, char c);
@@ -221,7 +221,6 @@ namespace TinySTL{
 
 	template<class InputIterator>
 	string::string(InputIterator first, InputIterator last){
-		//����ָ������ּ������ĺ���
 		string_aux(first, last, typename std::is_integral<InputIterator>::type());
 	}
 	template <class InputIterator>

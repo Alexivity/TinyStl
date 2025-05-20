@@ -12,7 +12,6 @@ namespace TinySTL{
 	template<class T>
 	class list;
 	namespace Detail{
-		//the class of node
 		template<class T>
 		struct node{
 			T data;
